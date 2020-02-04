@@ -37,17 +37,5 @@ namespace Getnumbers
             return result;
             
         }
-       
-
-
-        //public static int[] NumberArray(int n)
-        //{
-        //    number = new int[n];
-        //    for(int i =0; i < n; i++)
-        //    {
-        //        number[i] = i;
-        //    }
-        //    return number;
-
     }
 }
