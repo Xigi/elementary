@@ -36,23 +36,25 @@ namespace Getnumbers
             Console.WriteLine(new string('~', 50));
             Console.WriteLine(new string('~', 50));
 
-            var numstest = new Nums();
+            Nums numstest = new Nums();
+            Nums numstest1 = new Nums();
 
-            foreach(var element in Nums.Generator().Take(10))
+
+            foreach (var element in numstest.Generator().Take(10))
             {
                 Console.Write(element + " ");
             }
             Console.WriteLine();                   //block separator
             
 
-            foreach (var element in Nums.Generator().Take(10))
+            foreach (var element in numstest.Generator().Take(10))
             {
                 Console.Write(element + " ");
             }
             Console.WriteLine();                     //block separator
             
 
-            foreach (var element in Nums.Generator().Take(10))
+            foreach (var element in numstest1.Generator().Take(10))
             {
                 Console.Write(element+" ");
             }
@@ -92,7 +94,7 @@ namespace Getnumbers
 
             //TESTS for Nums 
             {
-                var element =  Nums.Generator().Take(0);
+                var element = numstest.Generator().Take(0);
                 
                     if (element.Count() == 0)
                     {
@@ -105,7 +107,7 @@ namespace Getnumbers
                 
             }
             {
-                var element = Nums.Generator().Take(5);
+                var element = numstest.Generator().Take(5);
 
                 if (element.Count() == 5)
                 {

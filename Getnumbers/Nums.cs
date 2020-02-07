@@ -6,10 +6,11 @@ namespace Getnumbers
 {
     class Nums
     {
-        public static int i = 0;
-        public static IEnumerable<int> Generator ()
+        public int i = 0;
+        
+        public IEnumerable<int> Generator ()
         {
-             
+            
             while (true)
             {
                 yield return i++;
