@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace ConsolTest1
+namespace LinkedList
 {
-    
     public class Item
     {
         public int Value;
@@ -21,6 +20,7 @@ namespace ConsolTest1
             first.Next = null;
             list = rest;
         }
+
         public static void PrintItem(Item list)
         {
             Item tmp = list;
@@ -30,6 +30,7 @@ namespace ConsolTest1
                 tmp = tmp.Next;
             }
         }
+
         public static void AddItem(Item l, Item i)
         {
             while (l.Next != null)
@@ -38,6 +39,7 @@ namespace ConsolTest1
             }
             l.Next = i;
         }
+
         public static void PrintItemEven(Item list)
         {
             int i = 1;
@@ -55,6 +57,7 @@ namespace ConsolTest1
                 }
             }
         }
+
         public static void PrintItemDenEven(Item list)
         {
             int i = 0;
@@ -69,6 +72,7 @@ namespace ConsolTest1
                 }
             }
         }
+
         public static bool Cycled(Item l)
         {
             bool cycl = false;
@@ -94,6 +98,7 @@ namespace ConsolTest1
             }
             return cycl;
         }
+
         public static Item CreationItemList(int n)
         {
             Item List = new Item() { Value = 0 };
@@ -107,5 +112,4 @@ namespace ConsolTest1
             return List;
         }
     }
-
 }
