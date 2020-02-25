@@ -9,7 +9,7 @@ namespace Sequence.Tests
         static void Main(string[] args)
         {
             {
-                IEnumerable<int> sequence = Enumerable.Empty<int>();
+                IEnumerable<int> sequence = new IntSequence().Take(0);
 
                 if (sequence.Count() == 0)
                 {
@@ -22,7 +22,7 @@ namespace Sequence.Tests
 
             }
             {
-                IEnumerable<int> sequence = Enumerable.Range(0, 5);
+                IEnumerable<int> sequence = new IntSequence().Take(5);
 
                 if (sequence.Count() == 5)
                 {
@@ -31,6 +31,18 @@ namespace Sequence.Tests
                 else
                 {
                     Console.WriteLine("Nums fixed count FAILED");
+                }
+            }
+            {
+                IEnumerable<int> sequence = new IntSequence(5).Take(5).ToArray();
+
+                if (sequence.Last() == 9 && sequence.Count() == 5)
+                {
+                    Console.WriteLine("Nums start point PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Nums start point FAILED");
                 }
             }
         }

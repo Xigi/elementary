@@ -1,17 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Sequence
 {
-    public class IntSequence
+    public class IntSequence : IEnumerable<int>
     {
-        public int i = 0;
+        private int _counter;
 
-        public IEnumerable<int> Generator()
+        public IntSequence(int start = 0)
+        {
+            _counter = start;
+        }
+
+        public IEnumerator<int> GetEnumerator()
         {
             while (true)
             {
-                yield return i++;
+                yield return _counter++;
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
