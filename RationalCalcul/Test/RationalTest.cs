@@ -50,6 +50,20 @@ namespace RationalCalcul.Test
             }
 
             {
+                Rational first = new Rational(1, 6);
+                Rational second = new Rational(5, 6);
+                Rational result = first - second;
+                if (result == new Rational(-2, 3))
+                {
+                    Console.WriteLine("Test negative answer and cut metod PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test negative answer and cut metod FAILED");
+                }
+            }
+
+            {
                 Rational first = new Rational(1, 2);
                 Rational second = new Rational(2, 3);
                 Rational result = first * second;

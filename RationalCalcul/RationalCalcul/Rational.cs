@@ -76,7 +76,7 @@ namespace RationalCalcul
             int c = right.Numerator;
             int d = right.Denominator;
 
-            Rational result =  new Rational(a * d + c * b, b * d);
+            Rational result = new Rational(a * d + c * b, b * d);
             return CutFraction(result);
 
         }
@@ -90,16 +90,7 @@ namespace RationalCalcul
             int d = right.Denominator;
 
             Rational result = new Rational(a * d - c * b, b * d);
-            if (result.Numerator <= 0 )
-            {
-                return result;
-            }
-            else
-            {
-                return CutFraction(result);
-            }
-            
-
+            return CutFraction(result);
         }
 
         public static Rational operator *(Rational left, Rational right)
@@ -126,7 +117,7 @@ namespace RationalCalcul
             return CutFraction(result);
         }
 
-        public static bool operator == (Rational left, Rational right)
+        public static bool operator ==(Rational left, Rational right)
         {
             int a = left.Numerator;
             int b = left.Denominator;
@@ -145,7 +136,7 @@ namespace RationalCalcul
 
         }
 
-        public static bool operator != (Rational left, Rational right)
+        public static bool operator !=(Rational left, Rational right)
         {
             int a = left.Numerator;
             int b = left.Denominator;
@@ -173,17 +164,21 @@ namespace RationalCalcul
             {
                 return $"{Numerator}/{Denominator}";
             }
-            
+
         }
 
         private static Rational CutFraction(Rational p)
         {
             int NOD = GetNOD(p.Numerator, p.Denominator);
-            return new Rational(p.Numerator/ NOD, p.Denominator/ NOD);
+            return new Rational(p.Numerator / NOD, p.Denominator / NOD);
         }
 
-       private static int GetNOD(int val1, int val2)
+        private static int GetNOD(int val1, int val2)
         {
+            if (val1 < 0)
+            {
+                val1 *= -1;
+            }
             while ((val1 != 0) && (val2 != 0))
             {
                 if (val1 > val2)
@@ -191,6 +186,7 @@ namespace RationalCalcul
                 else
                     val2 -= val1;
             }
+
             return Math.Max(val1, val2);
         }
     }
