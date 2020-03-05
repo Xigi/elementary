@@ -23,9 +23,9 @@ namespace RationalCalcul.Test
 
             {
                 Rational first = new Rational(1, 2);
-                Rational second = new Rational(1, 3);
+                Rational second = new Rational(2, 3);
                 Rational result = first - second;
-                if (result == new Rational(1, 6))
+                if (result == new Rational(-1, 6))
                 {
                     Console.WriteLine("Test minus PASS");
                 }

@@ -90,7 +90,15 @@ namespace RationalCalcul
             int d = right.Denominator;
 
             Rational result = new Rational(a * d - c * b, b * d);
-            return CutFraction(result);
+            if (result.Denominator < 0 || result.Numerator < 0)
+            {
+                return result;
+            }
+            else
+            {
+                return CutFraction(result);
+            }
+            
 
         }
 
