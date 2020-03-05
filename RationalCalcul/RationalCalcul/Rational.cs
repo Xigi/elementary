@@ -90,7 +90,7 @@ namespace RationalCalcul
             int d = right.Denominator;
 
             Rational result = new Rational(a * d - c * b, b * d);
-            if (result.Denominator < 0 || result.Numerator < 0)
+            if (result.Numerator <= 0 )
             {
                 return result;
             }
