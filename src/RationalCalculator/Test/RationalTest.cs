@@ -176,15 +176,15 @@ namespace RationalCalcul.Test
             }
 
             {
-                //try
-                //{
-                //    Rational first = new Rational.Parse("asdfasfd");
-                //    Console.WriteLine("Test Exception FAILED");
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine("Test Exception PASS   " + ex.Message);
-                //}
+                try
+                {
+                    Rational.Parse("asdfasfd");
+                    Console.WriteLine("Test Exception FAILED");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Test Exception PASS   " + ex.Message);
+                }
             }
 
             {
@@ -212,6 +212,32 @@ namespace RationalCalcul.Test
                 else
                 {
                     Console.WriteLine("Test comparisons < FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
+                first = -first;
+                if (first == new Rational(-1, 2))
+                {
+                    Console.WriteLine("Test '-' metod PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test '-' metod FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(-1, 2);
+                first = +first;
+                if (first == new Rational(1, 2))
+                {
+                    Console.WriteLine("Test '+' metod PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test '+' metod FAILED");
                 }
             }
         }

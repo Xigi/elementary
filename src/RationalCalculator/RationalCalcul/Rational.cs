@@ -131,6 +131,27 @@ namespace RationalCalcul
             return result.Numerator > 0;
         }
 
+        public static Rational operator -(Rational temp)
+        {
+            int a = temp.Numerator;
+            int b = temp.Denominator;
+
+            if (b < 0)
+            {
+                b = -b;
+            }
+
+            return new Rational(-a, b);
+        }
+
+        public static Rational operator +(Rational temp)
+        {
+            int a = temp.Numerator;
+            int b = temp.Denominator;
+
+            return new Rational(Math.Abs(a), Math.Abs(b));
+        }
+
         public override string ToString()
         {
             return $"{Numerator}/{Denominator}";
