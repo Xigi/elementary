@@ -22,6 +22,34 @@ namespace RationalCalcul.Test
             }
 
             {
+                Rational first = new Rational(-1, 2);
+                Rational second = new Rational(-2, 3);
+                Rational result = first + second;
+                if (result == new Rational(-7, 6))
+                {
+                    Console.WriteLine("Test summ negativ numerator fraction PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test summ negativ numerator fraction FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(-1, 2);
+                Rational second = new Rational(2, -3);
+                Rational result = first + second;
+                if (result == new Rational(-7, 6))
+                {
+                    Console.WriteLine("Test summ negativ numerator and denominator fraction PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test summ negativ numerator and denominator fraction FAILED");
+                }
+            }
+
+            {
                 Rational first = new Rational(1, 2);
                 Rational second = new Rational(1, 3);
                 Rational result = first - second;
@@ -46,20 +74,6 @@ namespace RationalCalcul.Test
                 else
                 {
                     Console.WriteLine("Test negative answer FAILED");
-                }
-            }
-
-            {
-                Rational first = new Rational(1, 6);
-                Rational second = new Rational(5, 6);
-                Rational result = first - second;
-                if (result == new Rational(-2, 3))
-                {
-                    Console.WriteLine("Test negative answer and cut metod PASS");
-                }
-                else
-                {
-                    Console.WriteLine("Test negative answer and cut metod FAILED");
                 }
             }
 
@@ -93,6 +107,20 @@ namespace RationalCalcul.Test
 
             {
                 Rational first = new Rational(1, 2);
+                Rational second = new Rational(2, -3);
+                Rational result = first * second;
+                if (result == new Rational(-1, 3))
+                {
+                    Console.WriteLine("Test negative denominator multy PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test negative denominator multy FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
                 Rational second = new Rational(2, 3);
                 Rational result = first / second;
                 if (result == new Rational(3, 4))
@@ -109,13 +137,27 @@ namespace RationalCalcul.Test
                 Rational first = new Rational(1, 2);
                 Rational second = new Rational(-2, 3);
                 Rational result = first / second;
-                if (result == new Rational(3, -4))
+                if (result == new Rational(-3, 4))
                 {
                     Console.WriteLine("Test negative division PASS");
                 }
                 else
                 {
                     Console.WriteLine("Test negative division FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
+                Rational second = new Rational(2, -3);
+                Rational result = first / second;
+                if (result == new Rational(-3, 4))
+                {
+                    Console.WriteLine("Test negative denominator division PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test negative denominator division FAILED");
                 }
             }
 

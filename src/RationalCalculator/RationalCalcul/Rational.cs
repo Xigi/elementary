@@ -13,6 +13,16 @@ namespace RationalCalcul
                 throw new ArgumentException("Denominator cannot be zero");
             }
 
+            if (denominator < 0 && numerator >0)
+            {
+                numerator = -numerator;
+                denominator = -denominator;
+            }
+             if ( numerator < 0 && denominator < 0)
+            {
+                denominator = -denominator;
+            }
+
             int GCD = GetGCD(numerator, denominator);
 
             Numerator = numerator / GCD;
@@ -95,13 +105,8 @@ namespace RationalCalcul
 
         public static Rational operator /(Rational left, Rational right)
         {
-            int a = left.Numerator;
-            int b = left.Denominator;
-
-            int c = right.Numerator;
-            int d = right.Denominator;
-
-            return new Rational(a * d, b * c);
+            Rational invers = new Rational(right.Denominator, right.Numerator);
+            return left * invers;
         }
 
         public static bool operator ==(Rational left, Rational right)
@@ -111,7 +116,7 @@ namespace RationalCalcul
 
         public static bool operator !=(Rational left, Rational right)
         {
-            return left.Numerator != right.Numerator || left.Denominator != right.Denominator;
+            return !(left == right);
         }
 
         public static bool operator <(Rational left, Rational right)
