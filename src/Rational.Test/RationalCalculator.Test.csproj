@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RationalCalcul\RationalCalculator.csproj" />
+    <ProjectReference Include="..\RationalCalculator\RationalCalculator.csproj" />
   </ItemGroup>
+
+  
 
 
 </Project>
