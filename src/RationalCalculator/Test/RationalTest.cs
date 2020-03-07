@@ -79,6 +79,20 @@ namespace RationalCalcul.Test
 
             {
                 Rational first = new Rational(1, 2);
+                Rational second = new Rational(-2, 3);
+                Rational result = first * second;
+                if (result == new Rational(-1, 3))
+                {
+                    Console.WriteLine("Test negative multy PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test negative multy FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
                 Rational second = new Rational(2, 3);
                 Rational result = first / second;
                 if (result == new Rational(3, 4))
@@ -88,6 +102,20 @@ namespace RationalCalcul.Test
                 else
                 {
                     Console.WriteLine("Test division FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
+                Rational second = new Rational(-2, 3);
+                Rational result = first / second;
+                if (result == new Rational(3, -4))
+                {
+                    Console.WriteLine("Test negative division PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test negative division FAILED");
                 }
             }
 

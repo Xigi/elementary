@@ -8,9 +8,9 @@ namespace RationalCalcul
     {
         public Rational(int numerator = 0, int denominator = 1)
         {
-            if (denominator < 1)
+            if (denominator == 0)
             {
-                throw new ArgumentException("Denominator cannot be zero or negative");
+                throw new ArgumentException("Denominator cannot be zero");
             }
 
             int GCD = GetGCD(numerator, denominator);
