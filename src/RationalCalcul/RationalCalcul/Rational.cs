@@ -13,22 +13,15 @@ namespace RationalCalcul
                 throw new ArgumentException("Denominator cannot be zero or negative");
             }
 
-            Numerator = numerator;
-            Denominator = denominator;
+            int GCD = GetGCD(numerator, denominator);
 
+            Numerator = numerator / GCD;
+            Denominator = denominator / GCD;
         }
 
-        public Rational(string s)
-        {
-            Rational result = Parse(s);
-
-            Numerator = result.Numerator;
-            Denominator = result.Denominator;
-
-        }
         public static bool TryParse(string s, out Rational result)
         {
-            result = new Rational(1, 1);
+            result = default;
             try
             {
                 result = Parse(s);
@@ -38,7 +31,6 @@ namespace RationalCalcul
             {
                 return false;
             }
-
         }
 
         public static Rational Parse(string s)
@@ -76,9 +68,7 @@ namespace RationalCalcul
             int c = right.Numerator;
             int d = right.Denominator;
 
-            Rational result = new Rational(a * d + c * b, b * d);
-            return CutFraction(result);
-
+            return new Rational(a * d + c * b, b * d);
         }
 
         public static Rational operator -(Rational left, Rational right)
@@ -89,8 +79,7 @@ namespace RationalCalcul
             int c = right.Numerator;
             int d = right.Denominator;
 
-            Rational result = new Rational(a * d - c * b, b * d);
-            return CutFraction(result);
+            return new Rational(a * d - c * b, b * d);
         }
 
         public static Rational operator *(Rational left, Rational right)
@@ -101,8 +90,7 @@ namespace RationalCalcul
             int c = right.Numerator;
             int d = right.Denominator;
 
-            Rational result = new Rational(a * c, b * d);
-            return CutFraction(result);
+            return new Rational(a * c, b * d);
         }
 
         public static Rational operator /(Rational left, Rational right)
@@ -113,81 +101,54 @@ namespace RationalCalcul
             int c = right.Numerator;
             int d = right.Denominator;
 
-            Rational result = new Rational(a * d, b * c);
-            return CutFraction(result);
+            return new Rational(a * d, b * c);
         }
 
         public static bool operator ==(Rational left, Rational right)
         {
-            int a = left.Numerator;
-            int b = left.Denominator;
-
-            int c = right.Numerator;
-            int d = right.Denominator;
-
-            if (a == c & b == d)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            return left.Numerator == right.Numerator && left.Denominator == right.Denominator;
         }
 
         public static bool operator !=(Rational left, Rational right)
         {
-            int a = left.Numerator;
-            int b = left.Denominator;
+            return left.Numerator != right.Numerator || left.Denominator != right.Denominator;
+        }
 
-            int c = right.Numerator;
-            int d = right.Denominator;
+        public static bool operator <(Rational left, Rational right)
+        {
+            Rational result = left - right;
+            return result.Numerator < 0;
+        }
 
-            if (a != c || b != d)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public static bool operator >(Rational left, Rational right)
+        {
+            Rational result = left - right;
+            return result.Numerator > 0;
         }
 
         public override string ToString()
         {
-            if (Numerator == 1 && Denominator == 1)
-            {
-                return $"1";
-            }
-            else
-            {
-                return $"{Numerator}/{Denominator}";
-            }
-
+            return $"{Numerator}/{Denominator}";
         }
 
-        private static Rational CutFraction(Rational p)
+        private static int GetGCD(int numerator, int denominator)
         {
-            int NOD = GetNOD(p.Numerator, p.Denominator);
-            return new Rational(p.Numerator / NOD, p.Denominator / NOD);
-        }
+            numerator = Math.Abs(numerator);
+            denominator = Math.Abs(denominator);
 
-        private static int GetNOD(int val1, int val2)
-        {
-            if (val1 < 0)
+            while (numerator > 0 && denominator > 0)
             {
-                val1 *= -1;
-            }
-            while ((val1 != 0) && (val2 != 0))
-            {
-                if (val1 > val2)
-                    val1 -= val2;
+                if (numerator > denominator)
+                {
+                    numerator %= denominator;
+                }
                 else
-                    val2 -= val1;
+                {
+                    denominator %= numerator;
+                }
             }
 
-            return Math.Max(val1, val2);
+            return numerator + denominator;
         }
     }
 }

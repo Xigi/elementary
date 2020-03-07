@@ -106,14 +106,42 @@ namespace RationalCalcul.Test
             }
 
             {
-                try
+                //try
+                //{
+                //    Rational first = new Rational.Parse("asdfasfd");
+                //    Console.WriteLine("Test Exception FAILED");
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine("Test Exception PASS   " + ex.Message);
+                //}
+            }
+
+            {
+                Rational first = new Rational(1, 2);
+                Rational second = new Rational(1, 3);
+                bool result = first > second;
+                if (result)
                 {
-                    Rational first = new Rational("asdfe");
-                    Console.WriteLine("Test Exception FAILED");
+                    Console.WriteLine("Test comparisons > PASS");
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Test Exception PASS   " + ex.Message);
+                    Console.WriteLine("Test comparisons > FAILED");
+                }
+            }
+
+            {
+                Rational first = new Rational(1, 2);
+                Rational second = new Rational(2, 2);
+                bool result = first < second;
+                if (result)
+                {
+                    Console.WriteLine("Test comparisons < PASS");
+                }
+                else
+                {
+                    Console.WriteLine("Test comparisons < FAILED");
                 }
             }
         }
