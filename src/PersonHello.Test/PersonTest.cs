@@ -1,24 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace PersonHello.Test
 {
-    class PersonTest
+    public class PersonTest
     {
-        static void Main(string[] args)
-        {
-            {
-                Person Person = new Person("Piter", "Garms", "M", 66);
-                if(Person.Hello() == "Hello Piter you already enjoy your retirement")
-                {
-                    Console.WriteLine("Test age man PASS");
-                }
-                else
-                {
-                    Console.WriteLine("Test age man FAILED");
-                }
-            }
+        static void Main()
+        {  }
 
-            {
+        [Fact]
+        public static void PassingTest()
+        {
+            IMessageStrategy strategies = new RetirementMessageStrategy();
+
+            Person person = new Person("Piter", "Garms", "M", 66);
+            strategies.Execute(person);
+
+            string messege = "Hello Piter you already enjoy your retirement";
+            
+            Assert.Equal(messege, strategies.Message);
+        }
+    }
+}
+
+
+            //{
+            //    List<IMessageStrategy> strategies = new List<IMessageStrategy>(){
+            //    new CompositeMessageStrategy(new BirthdayMessageStrategy(), new RetirementMessageStrategy()),
+            //    new BirthdayMessageStrategy(),
+            //    new AdulthoodMessageStrategy(),
+            //    new RetirementMessageStrategy(),
+            //    new ArmyMessageStrategy()};
+
+            //    Person person = new Person("Grisha", "Garms", "M", 17);
+
+            //    foreach (var s in strategies)
+            //    {
+            //        if (s.Execute(person))
+            //        {
+            //            Console.WriteLine(s.Message);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //{
+            //    Person Person = new Person("Piter", "Garms", "M", 66);
+            //    if (Person.Hello() == "Hello Piter you already enjoy your retirement")
+            //    {
+            //        Console.WriteLine("Test age man PASS");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Test age man FAILED");
+            //    }
+            //}
+
+            /*{
                 Person Person = new Person("Dasha", "Garms", "F", 66);
                 if (Person.Hello() == "Hello grandma Dasha")
                 {
@@ -111,9 +150,7 @@ namespace PersonHello.Test
                     catch (Exception ex)
                     {
                         Console.WriteLine("Test Exception PASS   " + ex.Message);
-                    }
-                }
-            }
-        }
-    }
-}
+                    }*/
+
+
+

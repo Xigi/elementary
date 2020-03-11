@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+
+class MainClass {
+  public static void Main (string[] args)
+  {
+    List<IMessageStrategy> strategies = new List<IMessageStrategy>()
+    {
+      new CompositeMessageStrategy(new BirthdayMessageStrategy(), new RetirementMessageStrategy()),
+      new BirthdayMessageStrategy(),
+      new AdulthoodMessageStrategy(),
+      new RetirementMessageStrategy()
+    };
+
+    Person person = new Person("Piter", "Garms", "M", 66);
+
+    foreach(var s in strategies)
+    {
+      if(s.Execute(person))
+      {
+        Console.WriteLine(s.Message);
+        break;
+      }
+    }
+  }
+}
+
+public interface IMessageStrategy
+{
+  string Message { get; }
+  bool Execute(Person p);
+}
+
+public class CompositeMessageStrategy : IMessageStrategy
+{
+  private readonly IMessageStrategy _s1;
+  private readonly IMessageStrategy _s2;
+
+  public CompositeMessageStrategy(
+    IMessageStrategy s1, IMessageStrategy s2)
+  {
+    _s1 = s1;
+    _s2 = s2;
+  }
+
+  public string Message { get; private set; }
+
+  public bool Execute(Person p)
+  {
+    if(_s1.Execute(p) && _s2.Execute(p))
+    {
+      Message = _s1.Message + " " + _s2.Message;
+      return true;
+    }
+
+    return false;
+  }
+}
+
+public class BirthdayMessageStrategy : IMessageStrategy
+{
+  public string Message { get; private set; }
+
+  public bool Execute(Person p)
+  {
+    if(p.IsBirthday())
+    {
+      Message = $"Hello { p.FirstName } you already enjoy your birthday";
+      return true;
+    }
+
+    return false;
+  }
+}
+
+public class AdulthoodMessageStrategy : IMessageStrategy
+{
+  public string Message { get; private set; }
+
+  public bool Execute(Person p)
+  {
+    if (p.IsAdult() && !p.IsPensioner())
+    {
+      Message = $"Hello { p.FirstName } you already enjoy your adulthood";
+      return true;
+    }
+
+    return false;
+  }
+}
+
+public class RetirementMessageStrategy : IMessageStrategy
+{
+  public string Message { get; private set; }
+
+  public bool Execute(Person p)
+  {
+    if (p.IsPensioner())
+    {
+      Message = $"Hello { p.FirstName } you already enjoy your retirement";
+      return true;
+    }
+
+    return false;
+  }
+}
+
+public class Person
+{
+  public String FirstName
+  {
+    get;
+  }
+
+  public String LastName
+  {
+    get;
+  }
+
+  public string Sex
+  {
+    get;
+  }
+
+  public int Age
+  {
+    get;
+  }
+
+  public bool IsAdult()
+  {
+    return Age > 18;
+  }
+
+  public bool IsPensioner()
+  {
+    return (Age > 65 && Sex == "M")
+          || (Age > 60 && Sex == "F");
+  }
+
+  public bool IsBirthday()
+  {
+    return true;
+  }
+
+  public Person(String firstName, String lastName, string sex, int age)
+  {
+    if (age < 0)
+    {
+      throw new ArgumentException("age cannot be negative");
+    }
+
+    FirstName = firstName;
+    LastName = lastName;
+    Sex = sex;
+    Age = age;
+  }
+}
