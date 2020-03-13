@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PersonHello
 {
-    class OldMessageStrategy : IMessageStrategy
+    public class OldMessageStrategy : IMessageStrategy
     {
         public string Message { get; private set; }
 

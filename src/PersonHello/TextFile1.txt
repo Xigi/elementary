@@ -1,158 +1,109 @@
 ﻿using System;
-using System.Collections.Generic;
+using Xunit;
 
-class MainClass {
-  public static void Main (string[] args)
-  {
-    List<IMessageStrategy> strategies = new List<IMessageStrategy>()
-    {
-      new CompositeMessageStrategy(new BirthdayMessageStrategy(), new RetirementMessageStrategy()),
-      new BirthdayMessageStrategy(),
-      new AdulthoodMessageStrategy(),
-      new RetirementMessageStrategy()
-    };
-
-    Person person = new Person("Piter", "Garms", "M", 66);
-
-    foreach(var s in strategies)
-    {
-      if(s.Execute(person))
-      {
-        Console.WriteLine(s.Message);
-        break;
-      }
-    }
-  }
-}
-
-public interface IMessageStrategy
+namespace PersonHello.Test
 {
-  string Message { get; }
-  bool Execute(Person p);
-}
-
-public class CompositeMessageStrategy : IMessageStrategy
-{
-  private readonly IMessageStrategy _s1;
-  private readonly IMessageStrategy _s2;
-
-  public CompositeMessageStrategy(
-    IMessageStrategy s1, IMessageStrategy s2)
-  {
-    _s1 = s1;
-    _s2 = s2;
-  }
-
-  public string Message { get; private set; }
-
-  public bool Execute(Person p)
-  {
-    if(_s1.Execute(p) && _s2.Execute(p))
+    public class PersonTests
     {
-      Message = _s1.Message + " " + _s2.Message;
-      return true;
+        [Theory]
+        [InlineData(17, false)]
+        [InlineData(19, true)]
+        [InlineData(64, true)]
+        [InlineData(70, false)]
+        public void AdulthoodTest(int age, bool areEqual)
+        {
+            IMessageStrategy strategies = new AdulthoodMessageStrategy();
+
+            Person person = new Person("N", "N", "M", age);
+            strategies.Execute(person);
+
+            string massage = $"Hello { person.FirstName } you already enjoy your adulthood";
+            if (areEqual)
+                Assert.Equal(massage, strategies.Message);
+            else
+                Assert.NotEqual(massage, strategies.Message);
+        }
+
+        [Theory]
+        [InlineData("M", 17, true)]
+        [InlineData("M", 19, false)]
+        [InlineData("F", 19, false)]
+        [InlineData("M", 21, false)]
+        [InlineData("M", 15, true)]
+        public void ArmyTest(string sex, int age, bool areEqual)
+        {
+             
+            IMessageStrategy strategies = new ArmyMessageStrategy();
+
+            Person person = new Person("N", "N", sex, age);
+
+            strategies.Execute(person);
+            string massage = $"Hi, how are you going to the army? you are already {age} years old, which means that in {18 - age} years you will be in the army";
+
+            if (areEqual)
+                Assert.Equal(massage, strategies.Message);
+            else
+                Assert.NotEqual(massage, strategies.Message);
+        }
+
+        [Theory]
+        [InlineData("M", 66, true)]
+        [InlineData("M", 81, true)]
+        [InlineData("F", 61, true)]
+        [InlineData("M", 40, false)]
+        public void RetirementTest(string sex, int age, bool areEqual)
+        {
+            IMessageStrategy strategies = new RetirementMessageStrategy();
+
+            Person person = new Person("N", "N", sex, age);
+            strategies.Execute(person);
+
+            string massage = $"Hello { person.FirstName } you already enjoy your retirement";
+            if (areEqual)
+                Assert.Equal(massage, strategies.Message);
+            else
+                Assert.NotEqual(massage, strategies.Message);
+        }
+
+        [Theory]
+        [InlineData(66, false)]
+        [InlineData(81, true)]
+        [InlineData(111, true)]
+        [InlineData(61, false)]
+        [InlineData(40, false)]
+        public void OldTest(int age, bool areEqual)
+        {
+            IMessageStrategy strategies = new OldMessageStrategy();
+
+            Person person = new Person("N", "N", "F", age);
+            strategies.Execute(person);
+
+            string massage = $"Hello! Mr. { person.FirstName }, how did you manage to live to such an age";
+
+            if (areEqual)
+                Assert.Equal(massage, strategies.Message);
+            else
+                Assert.NotEqual(massage, strategies.Message);
+        }
+
+        [Theory]
+        [InlineData(81, true)]
+        [InlineData(79, false)]
+        public void CompositeTest(int age, bool areEqual)
+        {
+            IMessageStrategy retirement = new RetirementMessageStrategy();
+            IMessageStrategy old = new OldMessageStrategy();
+            IMessageStrategy strategies = new CompositeMessageStrategy(retirement, old);
+
+            Person person = new Person("N", "N", "F", age);
+            strategies.Execute(person);
+
+            string massage = $"Hello { person.FirstName } you already enjoy your retirement Hello! Mr. { person.FirstName }, how did you manage to live to such an age";
+
+            if (areEqual)
+                Assert.Equal(massage, strategies.Message);
+            else
+                Assert.NotEqual(massage, strategies.Message);
+        }
     }
-
-    return false;
-  }
-}
-
-public class BirthdayMessageStrategy : IMessageStrategy
-{
-  public string Message { get; private set; }
-
-  public bool Execute(Person p)
-  {
-    if(p.IsBirthday())
-    {
-      Message = $"Hello { p.FirstName } you already enjoy your birthday";
-      return true;
-    }
-
-    return false;
-  }
-}
-
-public class AdulthoodMessageStrategy : IMessageStrategy
-{
-  public string Message { get; private set; }
-
-  public bool Execute(Person p)
-  {
-    if (p.IsAdult() && !p.IsPensioner())
-    {
-      Message = $"Hello { p.FirstName } you already enjoy your adulthood";
-      return true;
-    }
-
-    return false;
-  }
-}
-
-public class RetirementMessageStrategy : IMessageStrategy
-{
-  public string Message { get; private set; }
-
-  public bool Execute(Person p)
-  {
-    if (p.IsPensioner())
-    {
-      Message = $"Hello { p.FirstName } you already enjoy your retirement";
-      return true;
-    }
-
-    return false;
-  }
-}
-
-public class Person
-{
-  public String FirstName
-  {
-    get;
-  }
-
-  public String LastName
-  {
-    get;
-  }
-
-  public string Sex
-  {
-    get;
-  }
-
-  public int Age
-  {
-    get;
-  }
-
-  public bool IsAdult()
-  {
-    return Age > 18;
-  }
-
-  public bool IsPensioner()
-  {
-    return (Age > 65 && Sex == "M")
-          || (Age > 60 && Sex == "F");
-  }
-
-  public bool IsBirthday()
-  {
-    return true;
-  }
-
-  public Person(String firstName, String lastName, string sex, int age)
-  {
-    if (age < 0)
-    {
-      throw new ArgumentException("age cannot be negative");
-    }
-
-    FirstName = firstName;
-    LastName = lastName;
-    Sex = sex;
-    Age = age;
-  }
 }

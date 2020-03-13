@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RationalCalculator.Test", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonHello", "PersonHello\PersonHello.csproj", "{6CAC86EF-B185-418D-BA01-DEC0103B30DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonHello.Test", "PersonHello.Test\PersonHello.Test.csproj", "{239B6E00-6BB3-472D-AD00-91BA2AC01150}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonHello.Tests", "PersonHello.Tests\PersonHello.Tests.csproj", "{2229980D-E168-4EC8-ADCA-50469FFA245A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{6CAC86EF-B185-418D-BA01-DEC0103B30DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAC86EF-B185-418D-BA01-DEC0103B30DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CAC86EF-B185-418D-BA01-DEC0103B30DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{239B6E00-6BB3-472D-AD00-91BA2AC01150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{239B6E00-6BB3-472D-AD00-91BA2AC01150}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{239B6E00-6BB3-472D-AD00-91BA2AC01150}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{239B6E00-6BB3-472D-AD00-91BA2AC01150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2229980D-E168-4EC8-ADCA-50469FFA245A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2229980D-E168-4EC8-ADCA-50469FFA245A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2229980D-E168-4EC8-ADCA-50469FFA245A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2229980D-E168-4EC8-ADCA-50469FFA245A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
