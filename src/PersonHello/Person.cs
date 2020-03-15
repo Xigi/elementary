@@ -4,6 +4,7 @@ namespace PersonHello
 {
     public class Person
     {
+        private readonly DateTime now = DateTime.Now;
         public string FirstName
         {
             get;
@@ -24,7 +25,12 @@ namespace PersonHello
             get;
         }
 
-        public Person(string firstName, string lastname, string sex, int age)
+        public DateTime Birthday
+        {
+            get;
+        }
+
+        public Person(string firstName, string lastname, string sex, int age, DateTime birthday)
         {
             if (age < 0)
             {
@@ -35,11 +41,12 @@ namespace PersonHello
             LastName = lastname;
             Sex = sex;
             Age = age;
+            Birthday = birthday;
         }
 
         public bool IsBirthday()
         {
-            return false;
+            return (now.DayOfYear - Birthday.DayOfYear > -5) || (now.DayOfYear - Birthday.DayOfYear < 5);
         }
 
         public bool IsPensioner()
