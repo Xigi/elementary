@@ -23,28 +23,20 @@ namespace eho
         private static void OperationModeSelection(string workmod)
         {
            
-            if (workmod == "-f" || workmod == "-F" )
+            if (workmod == "-o" || workmod == "-O" )
             {
                 Console.WriteLine( );
-                StrFile.FileRecord(EhoMessage);
-            }
-
-            else if (workmod == "-k" || workmod == "-K")
-            {
-                Console.WriteLine("\n" + EhoMessage + "\n");
-                Thread.Sleep(5000);
+                Console.Write("Введите адрес файла: ");
+                StrFile.FileRecord(EhoMessage, Console.ReadLine());
             }
 
             else if (workmod == "-h" || workmod == "-H")
             {
                 ConsoleReference();
             }
-
             else
             {
-                Console.Write("Вы ввели недопустимую команду. Для просмотра всех команд введите -h \n"+
-                    "Ввидет команду: ");
-                OperationModeSelection(Console.ReadLine());
+                Console.WriteLine(EhoMessage);
             }
         }
 
@@ -53,8 +45,7 @@ namespace eho
             Console.WriteLine("Список команд: ");
             Console.Write(
                 "\n" +
-                "-k Вывод сообщения в консоль \n" +
-                "-f Вывод сообщения в фаил    \n" +
+                "-o Вывод сообщения в фаил    \n" +
                 "-h Справка по команндам      \n" +
                 "Ввидет команду: ");
            OperationModeSelection(Console.ReadLine());

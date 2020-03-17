@@ -6,13 +6,11 @@ namespace eho
 {
     class StrFile
     {
-        static string  writePath = @"C:\Users\DEUS\Desktop\ehomassage.txt";
-
-        public static void FileRecord(string message)
+        public static void FileRecord(string message, string path)
         {
             try
             {
-                using StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default);
+                using StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default);
                 sw.WriteLine(message);
             }
             catch (Exception e)

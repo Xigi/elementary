@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonHello.Tests", "Person
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eho", "eho\eho.csproj", "{42FE01E5-D9AC-4582-A9B2-D6F56F39DC9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eho.Tests", "Eho.Tests\Eho.Tests.csproj", "{003208DA-9DEF-47E1-95B0-7EA10333D58C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{42FE01E5-D9AC-4582-A9B2-D6F56F39DC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42FE01E5-D9AC-4582-A9B2-D6F56F39DC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42FE01E5-D9AC-4582-A9B2-D6F56F39DC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003208DA-9DEF-47E1-95B0-7EA10333D58C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003208DA-9DEF-47E1-95B0-7EA10333D58C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003208DA-9DEF-47E1-95B0-7EA10333D58C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003208DA-9DEF-47E1-95B0-7EA10333D58C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
