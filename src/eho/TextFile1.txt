@@ -1,0 +1,40 @@
+﻿using System;
+using System.IO;
+
+public class MainClass
+{
+  public static void Main (string[] args)
+  {
+    string message = "Hello, World!";
+    if(true)
+    {
+      new Echo(Console.Out).Write(message);
+    }
+    else if(true)//-h
+    {
+
+    }
+    else
+    {
+      using(var sw = new StreamWriter(Console.OpenStandardOutput()))
+      {
+        new Echo(sw).Write(message);
+      }
+    }
+  }
+}
+
+public class Echo
+{
+  private readonly TextWriter _writer;
+
+  public Echo(TextWriter writer)
+  {
+    _writer = writer;
+  }
+
+  public void Write(string message)
+  {
+    _writer.WriteLine(message);
+  }
+}
